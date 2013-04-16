@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.stackmob.scrumptious"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="17" />
+    <permission android:name="com.stackmob.scrumptious.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+	<uses-permission android:name="com.stackmob.scrumptious.permission.C2D_MESSAGE" /> 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        android:name=".ScrumptiousApplication" >
+        <service android:name=".GCMIntentService" />
+        <receiver android:name="com.google.android.gcm.GCMBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND" >
+  			<intent-filter>
+    			<action android:name="com.google.android.c2dm.intent.RECEIVE" />
+    			<action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+    			<category android:name="com.stackmob.scrumptious" />
+  			</intent-filter>
+		</receiver>
+        <activity
+            android:name="com.stackmob.scrumptious.MainActivity"
+            android:label="@string/app_name" 
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="PickerActivity"
+          android:label="@string/app_name" 
+          android:screenOrientation="portrait"/>
+        <activity android:name="PictureActivity"
+          android:label="@string/app_name" 
+          android:screenOrientation="portrait"/>
+        <activity android:name="MyRatingsActivity"
+          android:label="@string/app_name" 
+          android:screenOrientation="portrait"/>
+        <activity android:name="RatingActivity"
+          android:label="@string/app_name" 
+          android:screenOrientation="portrait"/>
+        <meta-data android:value="@string/app_id" android:name="com.facebook.sdk.ApplicationId"/>
+        <activity android:label="@string/app_name" android:name="com.facebook.LoginActivity"></activity>
+    </application>
+
+</manifest>

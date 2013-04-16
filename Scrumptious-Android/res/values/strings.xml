@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Scrumptious</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="app_id">YOUR_FACEBOOK_APP_ID</string>
+    <string name="get_started">To get started, log in using Facebook</string>
+    <string name="settings">Settings</string>
+    <string name="action_people">With whom?</string>
+	<string name="action_people_default">Select friends</string>
+	<string name="error_dialog_title">Error</string>
+	<string name="error_dialog_button_text">OK</string>
+	<string name="single_user_selected">%1$s</string>
+	<string name="two_users_selected">%1$s and %2$s</string>
+	<string name="multiple_users_selected">%1$s and %2$s others</string>
+	<string name="action_location">Where are you?</string>
+	<string name="action_location_default">Select one</string>
+	<string name="no_location_error">Could not obtain your current location</string>
+	<string name="action_eating">What are you eating?</string>
+	<string name="action_eating_default">Select one</string>
+	<string name="select_meal">Select a meal</string>
+	<string-array name="food_types">
+    	<item>Cheeseburger</item>
+    	<item>Pizza</item>
+    	<item>Hotdog</item>
+    	<item>Italian</item>
+    	<item>French</item>
+    	<item>Chinese</item>
+    	<item>Thai</item>
+    	<item>Indian</item>
+	</string-array>
+	<string-array name="food_og_urls">
+    	<item>http://scrumptious.stackmob.stackmobapp.com/cheeseburger.html</item> <!-- Cheeseburger -->
+    	<item>http://scrumptious.stackmob.stackmobapp.com/pizza.html</item> <!-- Pizza -->
+    	<item>http://scrumptious.stackmob.stackmobapp.com/hotdog.html</item> <!-- Hotdog -->
+    	<item>http://scrumptious.stackmob.stackmobapp.com/italian.html</item> <!-- Italian -->
+    	<item>http://scrumptious.stackmob.stackmobapp.com/french.html</item> <!-- French -->
+    	<item>http://scrumptious.stackmob.stackmobapp.com/chinese.html</item> <!-- Chinese -->
+    	<item>http://scrumptious.stackmob.stackmobapp.com/thai.html</item> <!-- Thai -->
+    	<item>http://scrumptious.stackmob.stackmobapp.com/indian.html</item> <!-- Indian -->
+	</string-array>
+	<string name="announce">Announce</string>
+	<string name="ratings">My Ratings</string>
+	<string name="rating_description">%1$s, Rating:%2$d</string>
+	<string name="rating_hint">Write a review for your meal</string>
+	<string name="rate">Rate It!</string>
+	<string name="action_camera">Got a picture?</string>
+	<string name="action_camera_default">Choose one</string>
+	<string name="action_camera_selected">Picture selected</string>
+	<string name="action_rating">Got a rating?</string>
+	<string name="action_rating_selected">You gave it %1$d out of 5 stars</string>
+	<string name="action_rating_default">Select One</string>
+	<string name="error_dialog_default_text">No response from server.</string>
+	<string name="error_authentication_retry">An error occurred that requires your attention. %1$s</string>
+	<string name="error_authentication_reopen">An error occurred, please re-login.</string>
+	<string name="error_permission">Please allow us to post on your behalf.</string>
+	<string name="error_server">The server is busy, please retry later.</string>
+	<string name="error_bad_request">An error occurred, please contact the developer with the following message: %1$s</string>
+	<string name="error_unknown">An unknown error occurred, please contact the developer with the following message: %1$s</string>
+	<string name="result_dialog_title">Result</string>
+	<string name="result_dialog_button_text">Thanks!</string>
+	<string name="result_dialog_text">Posted Open Graph action, id: %1$s</string>
+	<string name="progress_dialog_text">Announcing, please wait...</string>
+   
+
+</resources>
