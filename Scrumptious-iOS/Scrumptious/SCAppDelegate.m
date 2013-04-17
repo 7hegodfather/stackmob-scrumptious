@@ -72,7 +72,7 @@ NSString *const SCSessionStateChangedNotification =
     SM_CACHE_ENABLED = YES;
     
     // Init client and core data store
-    self.client = [[SMClient alloc] initWithAPIVersion:@"1" publicKey:@"YOUR_PUBLIC_KEY"];
+    self.client = [[SMClient alloc] initWithAPIVersion:@"1" publicKey:@"d4d1fc7c-a23b-4115-9133-1cf8aa0595a3"];
     self.coreDataStore = [self.client coreDataStoreWithManagedObjectModel:self.managedObjectModel];
     
     // Add cache fetch policy
