@@ -140,7 +140,7 @@ public class MainActivity extends FragmentActivity {
 		postToImpressionEndpoint();
 
 		// Initialize the StackMob SDK
-		StackMobAndroid.init(getApplicationContext(), 1, "YOUR_PUBLIC_KEY");
+		StackMobAndroid.init(getApplicationContext(), 1, "d4d1fc7c-a23b-4115-9133-1cf8aa0595a3");
 
 		// Initialize the StackMob SDK with OAuth (for push)
 		/*
