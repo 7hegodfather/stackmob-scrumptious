@@ -2,6 +2,7 @@ package com.stackmob.scrumptious;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.widget.Toast;
 
 import com.google.android.gcm.GCMBaseIntentService;
@@ -17,6 +18,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 	 */
 
 	private String regId;
+	private Handler handler = new Handler();
 
 	public GCMIntentService() {
 		super(MainActivity.SENDER_ID);
@@ -24,12 +26,12 @@ public class GCMIntentService extends GCMBaseIntentService {
 
 	@Override
 	protected void onError(Context ctx, String errorId) {
-		Toast.makeText(ctx, "Got a error " + errorId, Toast.LENGTH_LONG).show();
+		handler.post(new DisplayToast("Got a error " + errorId, ctx));
 	}
 
 	@Override
 	protected void onMessage(Context ctx, Intent arg1) {
-		Toast.makeText(ctx, "Got a message!", Toast.LENGTH_LONG).show();
+		handler.post(new DisplayToast("Got a message!", ctx));
 
 	}
 
@@ -45,5 +47,20 @@ public class GCMIntentService extends GCMBaseIntentService {
 	protected void onUnregistered(Context arg0, String arg1) {
 		StackMobPush.getPush().removePushToken(new StackMobPushToken(regId, TokenType.Android), new StackMobNoopCallback());
 	}
+	
+	private class DisplayToast implements Runnable{
+        String mText;
+        Context mContext;
+
+        public DisplayToast(String text, Context context){
+          mText = text;
+          mContext = context;
+        }
+
+        public void run(){
+          Toast.makeText(mContext, mText, Toast.LENGTH_LONG).show();
+        }
+	}
 
 }
+
