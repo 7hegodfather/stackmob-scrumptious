@@ -105,20 +105,27 @@ public class MainActivity extends FragmentActivity {
 		}
 	};
 
+	
+	// This is use with push 
 	/*
-	 * This is use with push private final StackMobCallback
-	 * standardToastCallback = new StackMobCallback() {
-	 * 
-	 * @Override public void success(String responseBody) {
-	 * threadAgnosticToast(MainActivity.this, "response: " + responseBody,
-	 * Toast.LENGTH_SHORT); Log.i(TAG, "request succeeded with " +
-	 * responseBody); }
-	 * 
-	 * @Override public void failure(StackMobException e) {
-	 * threadAgnosticToast(MainActivity.this, "error: " + e.getMessage(),
-	 * Toast.LENGTH_SHORT); Log.i(TAG, "request had exception " +
-	 * e.getMessage()); } };
-	 */
+	private final StackMobCallback standardToastCallback = new StackMobCallback() {
+
+		@Override
+		public void success(String responseBody) {
+			threadAgnosticToast(MainActivity.this, "response: " + responseBody,
+					Toast.LENGTH_SHORT);
+			Log.i(TAG, "request succeeded with " + responseBody);
+		}
+
+		@Override
+		public void failure(StackMobException e) {
+			threadAgnosticToast(MainActivity.this, "error: " + e.getMessage(),
+					Toast.LENGTH_SHORT);
+			Log.i(TAG, "request had exception " + e.getMessage());
+		}
+	};
+	*/
+	 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -136,21 +143,31 @@ public class MainActivity extends FragmentActivity {
 		StackMobAndroid.init(getApplicationContext(), 1, "YOUR_PUBLIC_KEY");
 
 		// Initialize the StackMob SDK with OAuth (for push)
-		// StackMobAndroid.init(this.getApplicationContext(),
-		// StackMob.OAuthVersion.One, 1, "YOUR_PUBLIC_KEY",
-		// "YOUR_PRIVATE_KEY");
-
+		/*
+		 StackMobAndroid.init(this.getApplicationContext(),
+		 StackMob.OAuthVersion.One, 1, "YOUR_PUBLIC_KEY",
+		 "YOUR_PRIVATE_KEY");
+		*/
+		
 		// Turn on logging
 		StackMob.getStackMob().getSession().getLogger().setLogging(true);
 
+		
+		// Register for GCM Push 
 		/*
-		 * // Register for GCM Push try { GCMRegistrar.checkDevice(this);
-		 * GCMRegistrar.checkManifest(this); final String regId =
-		 * GCMRegistrar.getRegistrationId(this); if (regId.equals("")) {
-		 * registerForPush(); } else { Log.v(TAG, "Already registered"); } }
-		 * catch(UnsupportedOperationException e) { Log.w(TAG,
-		 * "This device doesn't support gcm. Push will not work"); }
-		 */
+		try {
+			GCMRegistrar.checkDevice(this);
+			GCMRegistrar.checkManifest(this);
+			final String regId = GCMRegistrar.getRegistrationId(this);
+			if (regId.equals("")) {
+				registerForPush();
+			} else {
+				Log.v(TAG, "Already registered");
+			}
+		} catch (UnsupportedOperationException e) {
+			Log.w(TAG, "This device doesn't support gcm. Push will not work");
+		}
+		*/
 
 		FragmentManager fm = getSupportFragmentManager();
 		fragments[SPLASH] = fm.findFragmentById(R.id.splashFragment);
@@ -216,13 +233,17 @@ public class MainActivity extends FragmentActivity {
 		t.start();
 	}
 
+	
+	// Push registration methods 
 	/*
-	 * Push registration methods private void registerForPush() {
-	 * GCMRegistrar.register(this, SENDER_ID); }
-	 * 
-	 * private PushRegistrationIDHolder getRegistrationIDHolder() { return new
-	 * PushRegistrationIDHolder(MainActivity.this); }
-	 */
+	private void registerForPush() {
+		GCMRegistrar.register(this, SENDER_ID);
+	}
+
+	private PushRegistrationIDHolder getRegistrationIDHolder() {
+		return new PushRegistrationIDHolder(MainActivity.this);
+	}
+	*/
 
 	private void showFragment(int fragmentIndex, boolean addToBackStack) {
 		FragmentManager fm = getSupportFragmentManager();
@@ -339,15 +360,17 @@ public class MainActivity extends FragmentActivity {
 	private void loginWithFacebook(final Session session,
 			final SessionState state, final Exception exception) {
 
+		
+		// Here we register for push notifications 
 		/*
-		 * Here we register for push notifications try {
-		 * user.registerForPush(new
-		 * StackMobPushToken(getRegistrationIDHolder().getID()),
-		 * standardToastCallback); } catch( Exception e) {
-		 * threadAgnosticToast(MainActivity.this,
-		 * "no registration ID currently stored", Toast.LENGTH_SHORT); }
-		 */
-
+		try {
+			user.registerForPush(new StackMobPushToken(
+					getRegistrationIDHolder().getID()), standardToastCallback);
+		} catch (Exception e) {
+			threadAgnosticToast(MainActivity.this,
+					"no registration ID currently stored", Toast.LENGTH_SHORT);
+		}
+		*/
 		scrumptiousApplication.getUser().loginWithFacebook(
 				session.getAccessToken(), true,
 				scrumptiousApplication.getUser().getUsername(),
@@ -365,13 +388,19 @@ public class MainActivity extends FragmentActivity {
 				});
 	}
 
+	
+	// This method is used for push 
 	/*
-	 * This method is used for push private void threadAgnosticToast(final
-	 * Context ctx, final String txt, final int duration) { runOnUiThread(new
-	 * Runnable() {
-	 * 
-	 * @Override public void run() { Toast.makeText(ctx, txt, duration).show();
-	 * } }); }
-	 */
+	private void threadAgnosticToast(final Context ctx, final String txt,
+			final int duration) {
+		runOnUiThread(new Runnable() {
+
+			@Override
+			public void run() {
+				Toast.makeText(ctx, txt, duration).show();
+			}
+		});
+	}
+	*/
 
 }
